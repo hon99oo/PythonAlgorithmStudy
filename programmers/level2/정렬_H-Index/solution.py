@@ -1,7 +1,7 @@
 def solution(citations):
     answer_list = []
 
-    for citation in range(max(citations)+1):
+    for citation in range(len(citations)+1):
         citations_up = 0
         citations_down = 0
         for compare in citations:
