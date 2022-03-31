@@ -1,6 +1,6 @@
 # 프로그래머스(Programmers) 코딩테스트 연습
 
-## Level1 정렬 K번째수 파이썬(Python) 풀이
+## Level1 그리디 체육복 파이썬(Python) 풀이
 
 - https://programmers.co.kr/learn/courses/30/lessons/42862
 
