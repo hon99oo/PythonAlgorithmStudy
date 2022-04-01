@@ -17,5 +17,5 @@ def solution(str):
 
 
 if __name__ == "__main__":
-    str = "010"
+    str = "00011110000"
     print(solution(str))
