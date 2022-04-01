@@ -1,4 +1,4 @@
-def solution(array):
+def solution1(array):
     array.sort()
     money_set = set()
     for i in range(len(array)):
@@ -12,7 +12,7 @@ def solution(array):
             return i
     return max(money_set)+1
 
-def solution(array):
+def solution2(array):
     array.sort()
     target = 1
     for x in array:
@@ -22,6 +22,8 @@ def solution(array):
 
     answer = target
 
+    return answer
+
 if __name__ == "__main__":
     array = [3,2,1,1,9]
-    print(solution(array))
+    print(solution2(array))
