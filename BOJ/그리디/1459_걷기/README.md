@@ -18,94 +18,37 @@
 입력: 135 122 43 28, 출력: 3929<br>
 
 ## 풀이
-> 
+> 해당 문제는 다양한 조건을 나누어 해결해야하는 문제이다. W와 S의 관계를 잘 관찰한 뒤 총 세가지 조건으로 나누어 문제를 해결하였다. 첫번째 조건은 S가 W보다 작을 때,
+> 이 때는 가로 및 세로로 가는 것보다 대각선으로 가는게 훨씬 빠르다. 하지만 이 조건에서 한번 더 조건 분기 하는데, 남은 블록 수가 홀수라면 마지막 움직임은 가로 혹은 세로로 움직여야 최소 시간에 도착할 수 있다.
+> 두번째 조건은 S가 2*W보다 작을 때, 세번째 조건은 나머지 조건을 제외한 경우이다.
 
-### solution1
-1. 탐색하기 위해 노드를 저장하는 deque 변수를 선언한다.
-    - deque는 (x좌표,y좌표,해당노드까지의 최단 거리) 가 tuple 형식으로 저장된다.
-2. deque가 비게 되면 탈출하게 되는 while문을 선언한다.
-3. 반복문을 돌며 첫번째로 deque를 pop하여 각각 x,y,v에 저장한다.
-4. x와 y가 0보다 작거나 graph의 크기를 벗어나면 continue 해준다.
-5. graph의 x, y좌표가 1이라면, 해당 노드에 v 값을 더해준다.
-6. 이후 deque에 해당 좌표 기준 상,하,좌,우 값을 추가하여 탐색할 수 있게 설정한다.
-7. 반복문이 끝나면 graph의 N,M 좌표에 해당하는 value를 return한다.
-
-### solution2
-> solution1과 로직은 같지만, solution2는 상하좌우를 배열에 저장하였고,
-> 큐에는 x와 y좌표만 저장해두었다. 
+### solution
+1. s 가 w 보다 작을때, s가 w*2 보다 클 때 그리고 s가 w*2 보다 작을 때로 조건을 나눈다.
+2. s가 w*2 이하라면, x와 y중 최소값 만큼은 s로 움직인다. x와 y 차이값 만큼은 w로 움직인다.
+3. s가 w보다 작다면, x와 y중 최소값 만큼은 s로 움직이고, x와 y의 차이값이 짝수라면 w만큼, 홀수라면 차이값-1 으로 s를 움직이고 마지막 w를 더해준다.
 
 ## 코드
 
 {% highlight python %}
 
-    from collections import deque
+    def solution(x,y,w,s):
+        if s <= w:
+            min_val = min(x, y)
+            if abs(x-y) % 2 == 0:
+                result = ((min_val) * s) + (abs(x-y) * s)
+            else:
+                result = ((min_val) * s) + ((abs(x-y)-1) * s) + w
+        elif s > w*2:
+            result = (x+y) * w
+        else:
+            min_val = min(x,y)
+            result = ((min_val) * s) + (abs(x-y) * w)
     
-    def solution1(graph):
-        queue = deque([(0,0,0)])
-        n = len(graph)
-        m = len(graph[0])
+        return result
     
-        while queue:
-            x,y,v = queue.popleft()
-            if x>=n or y>=m or x<0 or y<0:
-                continue
-            if graph[x][y] == 1:
-                graph[x][y] += v
-                queue.append((x+1, y, graph[x][y]))
-                queue.append((x, y+1, graph[x][y]))
-                queue.append((x-1, y, graph[x][y]))
-                queue.append((x, y-1, graph[x][y]))
-    
-        return graph[n-1][m-1]
-    
-    
-    def solution2(graph):
-        # 이동할 네 방향 정의(상, 하, 좌, 우)
-        dx = [-1, 1, 0, 0]
-        dy = [0, 0, -1, 1]
-    
-        # graph 크기 정의
-        n = len(graph)
-        m = len(graph[0])
-    
-        # BFS 소스코드 구현
-        def bfs(x, y):
-    
-            # 큐(Queue) 구현을 위해 deque 라이브러리 사용
-            queue = deque()
-            queue.append((x, y))
-    
-            # 큐가 빌 때까지 반복
-            while queue:
-                x, y = queue.popleft()
-                # 현재 위치에서 네 방향으로의 위치 확인
-                for i in range(4):
-                    nx = x + dx[i]
-                    ny = y + dy[i]
-                    # 미로 찾기 공간을 벗어난 경우 무시
-                    if nx < 0 or ny < 0 or nx >= n or ny >= m:
-                        continue
-                    # 벽인 경우 무시
-                    if graph[nx][ny] == 0:
-                        continue
-                    # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록
-                    if graph[nx][ny] == 1:
-                        graph[nx][ny] = graph[x][y] + 1
-                        queue.append((nx, ny))
-    
-            # 가장 오른쪽 아래까지의 최단 거리 반환
-            return graph[n - 1][m - 1]
-        
-        return bfs(0,0)
     
     if __name__ == "__main__":
-        graph = [
-            [1,0,1,0,1,0],
-            [1,0,1,1,1,1],
-            [1,0,1,1,1,0],
-            [1,0,1,0,1,0],
-            [1,1,1,0,1,1]
-        ]
-        print(solution1(graph))
+        x, y, w, s = map(int, input().split())
+        print(solution(x,y,w,s))
 
 {% endhighlight %}
