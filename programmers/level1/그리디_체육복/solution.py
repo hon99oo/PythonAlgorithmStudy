@@ -14,6 +14,6 @@ def solution(n, lost, reserve):
 
 if __name__ == "__main__":
     n = 5
-    lost = [1,2,4]
-    reserve = [2,3,4,5]
+    lost = [3]
+    reserve = [2,4]
     print(solution(n,lost,reserve))

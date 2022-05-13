@@ -1,6 +1,7 @@
 # BOJ
 
-## 그리디 1459_걷기
+## 그리디 1459 걷기
+[문제로 이동!](https://www.acmicpc.net/problem/1459)
 
 ## 문제
 
