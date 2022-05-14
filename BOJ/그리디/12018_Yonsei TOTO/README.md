@@ -42,26 +42,48 @@
 {% endhighlight %}
 
 ## 풀이
-> 정렬 이후 abs 함수를 이용해서 순차별로 계산하면 해결할 수 있는 간단한 문제이다.
+> 여러가지 요소들을 입력받고 어떻게 효율적으로 저장할지 고민을 좀 했던 문제이다. 수강신청 인원과 정원 그리고 학생들이 배팅한 마일리지를 하나의 set으로 묶어서 처리했고, 
+> 수강신청 인원과 정원 수를 비교한뒤 조건 분기로 나누었으며, 배팅한 마일리지를 정렬해서 문제를 해결했다.
 
 ### solution
-1. 학생들의 예상 점수가 저장되어 있는 리스트를 오름차순으로 정렬한다.
-2. 학생들의 점수를 차례대로 1,2,3 ~ 순서로 빼주고 절대값 처리를 해준다.
+1. 첫 번째 반복문은 해당 수업을 수강하기 위해서 필요한 마일리지를 mileage 리스트에 모두 저장하는 반복문이다.
+2. 수강 정원과 수강 신청 인원을 비교한 뒤 각각에 mileage 리스트에 필요한 마일리지를 append 해준다.
+3. mileage 리스트를 정렬해준다.(마일리지가 적게 들어가는 수업을 우선 수강하기 위해서)
+4. mileage 리스트를 하나씩 꺼내서 더해가며 총 마일리지인 m보다 커지면 반복문을 탈출한다.
+* 성준이의 마일리지가 우선순위가 높은걸 주의하자! ex) [36, 36, 36, 36] 이라면 성준이가 36 마일리지를 쓴다면 수강할 수 있다.
 
 ## 코드
 
 {% highlight python %}
 
-    def solution(n, expectations):
-        expectations.sort()
-        result = 0
+    def solution(n, m, course):
+        mileage = []
         for i in range(n):
-            result += abs(expectations[i]-(i+1))
-        return result
+            if course[i][1] - course[i][0] > 0:
+                mileage.append(1)
+            else:
+                course[i][2].sort()
+                mileage.append(course[i][2][course[i][0] - course[i][1]])
+    
+        mileage.sort()
+        sum_v = 0
+        count = 0
+        for v in mileage:
+            if v > 36:
+                continue
+            sum_v += v
+            if sum_v > m:
+                return count
+            count += 1
+    
+        return count
     
     
     if __name__ == "__main__":
-        n = int(input())
-        expectations = [int(input()) for _ in range(n)]
-        print(solution(n, expectations))
+        n, m = map(int, input().split())
+        course = []
+        for _ in range(n):
+            register, possible = map(int, input().split())
+            course.append((register, possible, list(map(int, input().split()))))
+        print(solution(n, m, course))
 {% endhighlight %}
