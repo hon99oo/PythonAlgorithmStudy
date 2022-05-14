@@ -28,6 +28,7 @@
 ## 코드
 
 {% highlight python %}
+
     def solution(n, students):
         students.sort()
         result = min([students[i]+students[(n*2)-1-i] for i in range(n)])

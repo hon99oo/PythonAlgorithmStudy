@@ -30,6 +30,7 @@ KOI 담당조교로 참가한 김진영 조교는 실수로 모든 학생의 프
 ## 코드
 
 {% highlight python %}
+
     def solution(n, expectations):
         expectations.sort()
         result = 0
