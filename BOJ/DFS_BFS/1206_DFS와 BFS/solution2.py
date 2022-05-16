@@ -1,3 +1,5 @@
+# 힙으로 풀었습니다~~
+
 from collections import deque
 import heapq
 
