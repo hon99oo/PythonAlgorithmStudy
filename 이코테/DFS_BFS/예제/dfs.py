@@ -31,7 +31,6 @@ def dfs2(graph, v, visited):
 
 if __name__ == "__main__":
 
-    global order
     order = []
 
     # 인접리스트로 그래프 표현
