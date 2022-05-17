@@ -1,6 +1,6 @@
 # BOJ
 
-## 그리디 2606 바이러스
+## DFS/BFS 2606 바이러스
 [문제로 이동!](https://www.acmicpc.net/problem/2606)
 
 ## 문제

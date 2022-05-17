@@ -1,6 +1,6 @@
 # BOJ
 
-## 그리디 2178 미로 탐색
+## DFS/BFS 2178 미로 탐색
 [문제로 이동!](https://www.acmicpc.net/problem/2178)
 
 ## 문제

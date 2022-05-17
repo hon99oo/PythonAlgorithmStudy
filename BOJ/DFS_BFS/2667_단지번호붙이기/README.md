@@ -1,6 +1,6 @@
 # BOJ
 
-## 그리디 2667 단지번호붙이기
+## DFS/BFS 2667 단지번호붙이기
 [문제로 이동!](https://www.acmicpc.net/problem/2667)
 
 ## 문제

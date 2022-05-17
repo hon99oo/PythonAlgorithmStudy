@@ -1,6 +1,6 @@
 # BOJ
 
-## 그리디 1260 DFS와 BFS
+## DFS/BFS 1260 DFS와 BFS
 [문제로 이동!](https://www.acmicpc.net/problem/1260)
 
 ## 문제

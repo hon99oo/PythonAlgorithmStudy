@@ -1,6 +1,6 @@
 # BOJ
 
-## 그리디 2644 촌수계산
+## DFS/BFS 2644 촌수계산
 [문제로 이동!](https://www.acmicpc.net/problem/2644)
 
 ## 문제
