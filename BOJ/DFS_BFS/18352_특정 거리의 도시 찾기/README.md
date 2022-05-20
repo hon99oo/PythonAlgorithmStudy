@@ -1,7 +1,7 @@
 # BOJ
 
 ## DFS/BFS 18352 특정 거리의 도시 찾기
-[문제로 이동!](https://www.acmicpc.net/problem/13852)
+[문제로 이동!](https://www.acmicpc.net/problem/18352)
 
 ## 문제
 

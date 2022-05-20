@@ -1,7 +1,7 @@
 # BOJ
 
 ## DFS/BFS 14504 로봇 청속
-[문제로 이동!](https://www.acmicpc.net/problem/9205)
+[문제로 이동!](https://www.acmicpc.net/problem/14503)
 
 ## 문제
 
