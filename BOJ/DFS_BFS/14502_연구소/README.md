@@ -1,7 +1,7 @@
 # BOJ
 
-## DFS/BFS 2644 촌수계산
-[문제로 이동!](https://www.acmicpc.net/problem/2644)
+## DFS/BFS 14502 연구소
+[문제로 이동!](https://www.acmicpc.net/problem/14502)
 
 ## 문제
 
@@ -139,8 +139,7 @@
     
         return count_list
     
-    
-    
+
     if __name__ == "__main__":
         n, m = map(int, input().split())
         graph = []
