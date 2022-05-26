@@ -4,7 +4,7 @@
 
 ## 문제
 
-정수 X가 주어질 때 정수 Xㅇㅔ 사용할 수 있는 연산은 다음과 같다.<br>
+정수 X가 주어질 때 정수 X에 사용할 수 있는 연산은 다음과 같다.<br>
 1. X가 5로 나누어 떨어지면, 5로 나눈다.
 2. X가 3으로 나누어 떨어지면, 3으로 나눈다.
 3. X가 2로 나누어 떨어지면, 2로 나눈다.
@@ -30,21 +30,21 @@
 
 {% highlight python %}
 
-    def solution(str):
-        sum = int(str[0])
+    def solution(x):
+        d = [0] * 11
     
-        for ch in str[1:]:
-            ch = int(ch)
-            if sum < 2 or ch < 2:
-                sum += ch
-            else:
-                sum *= ch
+        for i in range(2, x + 1):
+            d[i] = d[i-1]+1
+            if i%2 ==0:
+                d[i] = min(d[i], d[i //2] + 1)
+            if i%3 ==0:
+                d[i] = min(d[i], d[i //3] + 1)
+            if i%5 ==0:
+                d[i] = min(d[i], d[i //5] + 1)
     
-        return sum
-    
+        return d[x]
     
     if __name__ == "__main__":
-        str = "567"
-        print(solution(str))
-
+        x = 10
+        print(solution(x))
 {% endhighlight %}
